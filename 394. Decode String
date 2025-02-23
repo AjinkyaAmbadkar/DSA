@@ -1,0 +1,27 @@
+#394. Decode String
+class Solution:
+    #Approach:
+    #1. append till you dont see ]
+    #2. If you see ] pop and append it to string
+    #3. and pop one more character for [
+    #4. now next element will be digit so check if stack is not empty and extract digits from stack
+    #5. Multiply the number with characters and put in stack again
+    #6. Do this repetatively.
+    def decodeString(self, s: str) -> str:
+        stack=[]
+        for char in range(len(s)):
+            print(s[char])
+            if s[char] != "]" :
+                stack.append(s[char])
+                print(stack)
+            else :
+                substr = ""
+                while stack[-1] != "[":
+                    substr = stack.pop() + substr
+                stack.pop()
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                stack.append(int(k) * substr)
+
+        return "".join(stack)
