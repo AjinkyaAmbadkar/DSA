@@ -1,0 +1,15 @@
+#1732. Find the Highest Altitude
+class Solution:
+    #Approach
+    #1. maxAlt and currAlt
+    #2. currAltitute = currentAltitute + gain[i] gain at that point
+    #3. compare currentAltitute and maxAltitude
+    #4. return maxAltitute
+    def largestAltitude(self, gain: List[int]) -> int:
+        maxAlt = 0
+        currAlt = 0
+        for i in range(0,len(gain)):
+            currAlt += gain[i]
+            maxAlt = max(maxAlt,currAlt)
+        print(maxAlt)
+        return maxAlt

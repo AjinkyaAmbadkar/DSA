@@ -1,0 +1,24 @@
+#735. Asteroid Collision
+class Solution:
+    #Approach: https://www.youtube.com/watch?v=_eYGqw_VDR4
+    #1. if positive append into stack
+    #2. If negative check if stack has elements and it is greater than top of stack then pop elements until stack has smaller
+    #3. if top of stack and num are same then pop element from stack
+    #4. if negative and stack is empty push into stack. 
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for num in asteroids:
+            if num > 0:
+                stack.append(num)
+            else:
+                while stack and stack[-1] > 0 and stack[-1] < abs(num):
+                    stack.pop()
+                if len(stack) != 0 and stack[-1] == abs(num):
+                    stack.pop()
+                elif len(stack) == 0 or stack[-1] < 0:
+                    stack.append(num)
+
+        rem = []
+        while stack:
+            rem.append(stack.pop())
+        return rem[::-1]
