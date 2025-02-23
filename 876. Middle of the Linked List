@@ -1,0 +1,21 @@
+#876. Middle of the Linked List
+# Definition for singly-linked list.
+# class ListNode:
+#     def _init_(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    #Approach
+    #1. Calucalte the mid by traversing the linked list //2 
+    #2. Move till mid as in for loop and move head till mid element and return the remaining list
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        curr = head
+        len = 0
+        while curr:
+            len += 1
+            curr = curr.next
+        mid = len // 2
+
+        for _ in range(mid):
+            head = head.next
+        return head
