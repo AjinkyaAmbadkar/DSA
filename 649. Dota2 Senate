@@ -1,0 +1,34 @@
+#649. Dota2 Senate
+#Approach:
+#1. Store Character index into 2 seperate queues D_queue and R_queue
+#2. Check till both queues are empty
+#3. Extract 1st element from both queues and check the position smaller will block larger and moves to last
+#4. This will continue till one queu becomes empty
+
+
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        R_queue = []
+        D_queue = []
+        i = 0
+        for i,char in enumerate(senate) :
+            if char == 'R':
+                R_queue.append(i)
+            else :
+                D_queue.append(i)
+        print(R_queue)
+        print(D_queue)
+
+        while R_queue and D_queue:
+            r_turn = R_queue.pop(0)
+            d_turn = D_queue.pop(0)
+
+            if r_turn < d_turn :
+                R_queue.append(r_turn + len(senate))
+            else :
+                D_queue.append(d_turn + len(senate))
+
+        if len(R_queue) != 0:
+            return 'Radiant'
+        elif len(D_queue) != 0:
+            return 'Dire'
